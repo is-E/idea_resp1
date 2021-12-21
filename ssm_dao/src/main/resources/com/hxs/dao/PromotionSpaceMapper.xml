@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxs.dao.PromotionSpaceMapper">
+    <!--查询广告位列表-->
+    <select id="findAll" resultType="promotionSpace">
+        select *
+        from promotion_space
+    </select>
+    <!--添加广告位-->
+    <insert id="addPromotionSpace" parameterType="promotionSpace">
+        insert into promotion_space
+        values (null, #{name}, #{spaceKey}, #{createTime}, #{updateTime}, #{isDel})
+
+    </insert>
+    <!--修改广告位信息-->
+    <update id="updatePromotionSpace" parameterType="promotionSpace">
+        UPDATE promotion_space
+        SET name       = #{name},
+            updateTime = #{updateTime}
+        where id = #{id}
+    </update>
+
+    <!--通过id查询广告位信息-->
+    <select id="findPromotionSpaceById" resultType="promotionSpace" parameterType="int">
+        SELECT id, name
+        FROM promotion_space
+        WHERE id = #{id};
+    </select>
+
+
+</mapper>
